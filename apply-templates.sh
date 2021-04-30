@@ -56,6 +56,10 @@ for version; do
 
 		echo "processing $version/$dir ..."
 
+		if [[ ! -e $dir ]]; then
+      mkdir -p "$version/$dir"
+    fi
+
 		variantBlock1="$(if [ -f "Dockerfile-$variant-block-1.template" ]; then gawk -f "$jqt" "Dockerfile-$variant-block-1.template"; fi)"
 		variantBlock2="$(if [ -f "Dockerfile-$variant-block-2.template" ]; then gawk -f "$jqt" "Dockerfile-$variant-block-2.template"; fi)"
 		export variantBlock1 variantBlock2
